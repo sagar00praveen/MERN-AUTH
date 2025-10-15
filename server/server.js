@@ -14,20 +14,19 @@ connectDB();
 
 // Allowed origins for CORS
 const allowedOrigins = [
-  "http://localhost:5173",
   "https://mern-auth-two-murex.vercel.app",
-  "https://mern-auth-m38s8e8wi-sagar-praveens-projects.vercel.app",
-  "https://mern-auth-r3ik78kb7-sagar-praveens-projects.vercel.app",
-  "https://mern-auth-8hfegh4a9-sagar-praveens-projects.vercel.app",
-  "https://mern-auth-git-main-sagar-praveens-projects.vercel.app"
+  "https://mern-auth-4xn2stl8a-sagar-praveens-projects.vercel.app" // add all frontend URLs
 ];
 
-// Middleware
-app.use(express.json());
-app.use(cookieParser());
 app.use(cors({
-  origin: "https://mern-auth-two-murex.vercel.app", // your deployed frontend
-  credentials: true // allow cookies to be sent
+  origin: function(origin, callback) {
+    if (!origin) return callback(null, true); // allow server-to-server requests
+    if (allowedOrigins.indexOf(origin) === -1) {
+      return callback(new Error('CORS policy does not allow this origin'), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true // allow cookies
 }));
 
 
