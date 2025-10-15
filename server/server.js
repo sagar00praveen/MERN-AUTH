@@ -26,15 +26,10 @@ const allowedOrigins = [
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin: function(origin, callback) {
-    if (!origin) return callback(null, true); // allow server-side requests
-    if (allowedOrigins.indexOf(origin) === -1) {
-      return callback(new Error('CORS policy does not allow this origin'), false);
-    }
-    return callback(null, true);
-  },
-  credentials: true // allow cookies
+  origin: "https://mern-auth-two-murex.vercel.app", // your deployed frontend
+  credentials: true // allow cookies to be sent
 }));
+
 
 // API Endpoints
 app.get('/', (req, res) => res.send("API working"));
