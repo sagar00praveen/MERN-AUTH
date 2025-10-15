@@ -16,7 +16,8 @@ connectDB();
 const allowedOrigins = [
   "http://localhost:5173",
   "https://mern-auth-two-murex.vercel.app",
-  "https://mern-auth-m38s8e8wi-sagar-praveens-projects.vercel.app" // add all Vercel frontends
+  "https://mern-auth-m38s8e8wi-sagar-praveens-projects.vercel.app",
+  "https://mern-auth-r3ik78kb7-sagar-praveens-projects.vercel.app"
 ];
 
 // Middleware
