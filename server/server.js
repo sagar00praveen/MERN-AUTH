@@ -17,7 +17,10 @@ const allowedOrigins = [
   "http://localhost:5173",
   "https://mern-auth-two-murex.vercel.app",
   "https://mern-auth-m38s8e8wi-sagar-praveens-projects.vercel.app",
-  "https://mern-auth-r3ik78kb7-sagar-praveens-projects.vercel.app"
+  "https://mern-auth-r3ik78kb7-sagar-praveens-projects.vercel.app",
+  "https://mern-auth-8hfegh4a9-sagar-praveens-projects.vercel.app/",
+  "https://mern-auth-two-murex.vercel.app/",
+  "https://mern-auth-git-main-sagar-praveens-projects.vercel.app/"
 ];
 
 // Middleware
