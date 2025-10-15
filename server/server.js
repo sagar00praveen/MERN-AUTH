@@ -19,14 +19,8 @@ const allowedOrigins = [
 ];
 
 app.use(cors({
-  origin: function(origin, callback) {
-    if (!origin) return callback(null, true); // allow server-to-server requests
-    if (allowedOrigins.indexOf(origin) === -1) {
-      return callback(new Error('CORS policy does not allow this origin'), false);
-    }
-    return callback(null, true);
-  },
-  credentials: true // allow cookies
+  origin: true, // allow all origins
+  credentials: true
 }));
 
 
