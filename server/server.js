@@ -18,9 +18,8 @@ const allowedOrigins = [
   "https://mern-auth-two-murex.vercel.app",
   "https://mern-auth-m38s8e8wi-sagar-praveens-projects.vercel.app",
   "https://mern-auth-r3ik78kb7-sagar-praveens-projects.vercel.app",
-  "https://mern-auth-8hfegh4a9-sagar-praveens-projects.vercel.app/",
-  "https://mern-auth-two-murex.vercel.app/",
-  "https://mern-auth-git-main-sagar-praveens-projects.vercel.app/"
+  "https://mern-auth-8hfegh4a9-sagar-praveens-projects.vercel.app",
+  "https://mern-auth-git-main-sagar-praveens-projects.vercel.app"
 ];
 
 // Middleware
@@ -28,15 +27,13 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
   origin: function(origin, callback) {
-    // allow requests with no origin (like mobile apps or curl)
-    if (!origin) return callback(null, true);
+    if (!origin) return callback(null, true); // allow server-side requests
     if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = `The CORS policy for this site does not allow access from the specified Origin.`;
-      return callback(new Error(msg), false);
+      return callback(new Error('CORS policy does not allow this origin'), false);
     }
     return callback(null, true);
   },
-  credentials: true // allows cookies
+  credentials: true // allow cookies
 }));
 
 // API Endpoints
