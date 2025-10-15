@@ -9,14 +9,12 @@ export const AppContextProvider = ({ children }) => {
   const [isLoggedin, setIsLoggedin] = useState(false);
   const [userData, setUserData] = useState(null);
 
+  // ---------------------------
   // Get logged-in user data
+  // ---------------------------
   const getUserData = async () => {
     try {
-      const { data } = await axios.get(`${backendUrl}/api/user/data`, {
-        
-        withCredentials: true, // include cookies/session
-      });
-
+      const { data } = await axios.get(`${backendUrl}/api/user/data`);
       if (data.success) {
         setUserData(data.userData);
       } else {
@@ -29,23 +27,19 @@ export const AppContextProvider = ({ children }) => {
     }
   };
 
-  //Check authentication state
+  // ---------------------------
+  // Check authentication state
+  // ---------------------------
   const getAuthState = async () => {
     try {
-      const {data} = await axios.get(`${backendUrl}/api/auth/is-auth`, {
-        withCredentials: true, // includecookies/session
-      });
-
+      const { data } = await axios.get(`${backendUrl}/api/auth/is-auth`);
       if (data.success) {
         setIsLoggedin(true);
-        await getUserData(); 
-
-        
+        await getUserData();
       } else {
         setIsLoggedin(false);
       }
     } catch (error) {
-  
       if (error.response?.status !== 401) {
         toast.error(error.response?.data?.message || "Auth check failed");
       }
@@ -53,7 +47,12 @@ export const AppContextProvider = ({ children }) => {
     }
   };
 
+  // ---------------------------
+  // Run once on mount
+  // ---------------------------
   useEffect(() => {
+    // Ensure axios sends cookies for all requests
+    axios.defaults.withCredentials = true;
     getAuthState();
   }, []);
 
