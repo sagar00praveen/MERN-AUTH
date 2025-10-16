@@ -15,13 +15,22 @@ connectDB();
 // Allowed origins for CORS
 const allowedOrigins = [
   "https://mern-auth-two-murex.vercel.app",
-  "https://mern-auth-4xn2stl8a-sagar-praveens-projects.vercel.app" // add all frontend URLs
+  "https://mern-auth-4xn2stl8a-sagar-praveens-projects.vercel.app",
+  "https://mern-auth-gtibscu8i-sagar-praveens-projects.vercel.app"
 ];
 
 app.use(cors({
-  origin: true, // allow all origins
+  origin: function(origin, callback){
+    if (!origin) return callback(null, true); // allow server-to-server requests
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS not allowed'), false);
+    }
+  },
   credentials: true
 }));
+
 
 
 // API Endpoints
