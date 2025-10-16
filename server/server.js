@@ -25,17 +25,27 @@ const allowedOrigins = [
 
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (!origin) return callback(null, true); // allow server-to-server requests
-      if (allowedOrigins.includes(origin)) {
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like server-to-server)
+      if (!origin) return callback(null, true);
+
+      // Allow any Vercel domain or your production domain
+      const allowed = [
+        "https://mern-auth-two-murex.vercel.app",
+        /\.vercel\.app$/, // regex for any *.vercel.app
+      ];
+
+      if (allowed.some((rule) => (typeof rule === "string" ? rule === origin : rule.test(origin)))) {
         callback(null, true);
       } else {
+        console.log("❌ Blocked by CORS:", origin);
         callback(new Error("CORS not allowed"), false);
       }
     },
-    credentials: true, // ✅ allow cookies
+    credentials: true,
   })
 );
+
 
 // ✅ Routes
 app.get("/", (req, res) => res.send("API working"));
