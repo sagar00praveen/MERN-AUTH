@@ -6,8 +6,9 @@ import "./index.css";
 import { AppContextProvider } from "./context/AppContext.jsx";
 import axios from "axios";
 
-// ✅ Set globally before any axios calls
-axios.defaults.withCredentials = true;
+// ✅ Base URL of your Render backend
+axios.defaults.baseURL = "https://mern-auth-wypp.onrender.com"; 
+axios.defaults.withCredentials = true; // ✅ allow cookies to be sent
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
