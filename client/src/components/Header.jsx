@@ -27,7 +27,7 @@ return (
       {/* Call to Action Button */}
       <button
   type="button"
-  onClick={() => window.open('https://my-portfolio-project-git-main-sagar-praveens-projects.vercel.app/', '_blank')}
+  onClick={() => window.open('https://portfolio-website-seven-umber-40.vercel.app/', '_blank')}
   className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl 
              focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 
              font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 transition-all"
