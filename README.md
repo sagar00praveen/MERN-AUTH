@@ -2,4 +2,11 @@
 
 i created mern email authentication 
 
-you can 
+you can download and run it by 
+
+run the server: cd server 
+->npm install
+->npm run server
+run feontend : cd client 
+->npm install
+->npm run dev
